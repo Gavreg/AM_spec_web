@@ -1,4 +1,4 @@
-#include "CM_spec_web.h"
+п»ї#include "CM_spec_web.h"
 #include <QTextCodec>
 
 extern "C" __declspec(dllexport) IsModule * loadModule()
@@ -10,23 +10,23 @@ extern "C" __declspec(dllexport) IsModule * loadModule()
 AFsettings *formF3settings;
 CM_spec_widget::CM_spec_widget(QWidget * parent):Am_spec_widget(parent)
 {
-	widgetName = QStringLiteral("Спецификации");
+	widgetName = QStringLiteral("РЎРїРµС†РёС„РёРєР°С†РёРё");
 
-	formF1 = addTab(QStringLiteral("Форма F1"));
-	formF2 = addTab(QStringLiteral("Форма F2"));
+	formF1 = addTab(QStringLiteral("Р¤РѕСЂРјР° F1"));
+	formF2 = addTab(QStringLiteral("Р¤РѕСЂРјР° F2"));
 
 	addSpace();
 
-	formF3 = addTab(QStringLiteral("Форма F3"));
+	formF3 = addTab(QStringLiteral("Р¤РѕСЂРјР° F3"));
 	formF3settings = new AFsettings(this);	
 	formF3->ui.propsLayout->addWidget(formF3settings);
 	connect(formF3settings->ui.comboBox, (void (QComboBox::*)(int))&QComboBox::currentIndexChanged, [&]() {generateFormF3(); });
 
-	formF4 = addTab(QStringLiteral("Форма F4"));
+	formF4 = addTab(QStringLiteral("Р¤РѕСЂРјР° F4"));
 
 	addSpace();
 
-	formF6 = addTab(QStringLiteral("Форма F6"));
+	formF6 = addTab(QStringLiteral("Р¤РѕСЂРјР° F6"));
 
 }
 
@@ -56,12 +56,12 @@ void CM_spec_widget::generateFormF1()
 
 	QStandardItemModel form;
 	form.setColumnCount(6);
-	form.setHeaderData(0, Qt::Horizontal, QStringLiteral("Класс"));
-	form.setHeaderData(1, Qt::Horizontal, QStringLiteral("Код"));
-	form.setHeaderData(2, Qt::Horizontal, QStringLiteral("Наименование"));
-	form.setHeaderData(3, Qt::Horizontal, QStringLiteral("Тип"));
-	form.setHeaderData(4, Qt::Horizontal, QStringLiteral("Статус"));
-	form.setHeaderData(5, Qt::Horizontal, QStringLiteral("Оценка"));
+	form.setHeaderData(0, Qt::Horizontal, QStringLiteral("РљР»Р°СЃСЃ"));
+	form.setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ"));
+	form.setHeaderData(2, Qt::Horizontal, QStringLiteral("РќР°РёРјРµРЅРѕРІР°РЅРёРµ"));
+	form.setHeaderData(3, Qt::Horizontal, QStringLiteral("РўРёРї"));
+	form.setHeaderData(4, Qt::Horizontal, QStringLiteral("РЎС‚Р°С‚СѓСЃ"));
+	form.setHeaderData(5, Qt::Horizontal, QStringLiteral("РћС†РµРЅРєР°"));
 	
 	for (auto i = elements.begin(); i < elements.end(); ++i)
 	{
@@ -101,14 +101,14 @@ void CM_spec_widget::generateFormF2()
 
 	QStandardItemModel form;
 	form.setColumnCount(8);
-	form.setHeaderData(0, Qt::Horizontal, QStringLiteral("Класс"));
-	form.setHeaderData(1, Qt::Horizontal, QStringLiteral("Код ПК1"));
-	form.setHeaderData(2, Qt::Horizontal, QStringLiteral("Код ПК2"));
-	form.setHeaderData(3, Qt::Horizontal, QStringLiteral("Код ПК3"));
-	form.setHeaderData(4, Qt::Horizontal, QStringLiteral("Наименование"));
-	form.setHeaderData(5, Qt::Horizontal, QStringLiteral("Вид"));
-	form.setHeaderData(6, Qt::Horizontal, QStringLiteral("Оценка"));
-	form.setHeaderData(7, Qt::Horizontal, QStringLiteral("Код"));
+	form.setHeaderData(0, Qt::Horizontal, QStringLiteral("РљР»Р°СЃСЃ"));
+	form.setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ РџРљ1"));
+	form.setHeaderData(2, Qt::Horizontal, QStringLiteral("РљРѕРґ РџРљ2"));
+	form.setHeaderData(3, Qt::Horizontal, QStringLiteral("РљРѕРґ РџРљ3"));
+	form.setHeaderData(4, Qt::Horizontal, QStringLiteral("РќР°РёРјРµРЅРѕРІР°РЅРёРµ"));
+	form.setHeaderData(5, Qt::Horizontal, QStringLiteral("Р’РёРґ"));
+	form.setHeaderData(6, Qt::Horizontal, QStringLiteral("РћС†РµРЅРєР°"));
+	form.setHeaderData(7, Qt::Horizontal, QStringLiteral("РљРѕРґ"));
 	vector<SCBinaryLink *> elements;
 
 	for (int i = 0; i < cm->getConceptStructure()->linksCount(); ++i)
@@ -175,9 +175,9 @@ void CM_spec_widget::generateFormF2()
 		QString type;
 		switch (sc->getType())
 		{
-		case LT_Arrangement: type = QStringLiteral("К"); break;
-		case LT_Composition: type = QStringLiteral("С"); break;
-		case LT_Order: type = QStringLiteral("У"); break;
+		case LT_Arrangement: type = QStringLiteral("Рљ"); break;
+		case LT_Composition: type = QStringLiteral("РЎ"); break;
+		case LT_Order: type = QStringLiteral("РЈ"); break;
 		default:
 			break;
 		}
@@ -228,12 +228,12 @@ void CM_spec_widget::generateFormF3()
 	
 	QStandardItemModel form;
 	form.setColumnCount(6);
-	form.setHeaderData(0, Qt::Horizontal, QStringLiteral("Код"));
-	form.setHeaderData(1, Qt::Horizontal, QStringLiteral("Тип"));
-	form.setHeaderData(2, Qt::Horizontal, QStringLiteral("Наименование"));
-	form.setHeaderData(3, Qt::Horizontal, QStringLiteral("Статус"));
-	form.setHeaderData(4, Qt::Horizontal, QStringLiteral("Степень формализации"));
-	form.setHeaderData(5, Qt::Horizontal, QStringLiteral("Структурное свойство"));
+	form.setHeaderData(0, Qt::Horizontal, QStringLiteral("РљРѕРґ"));
+	form.setHeaderData(1, Qt::Horizontal, QStringLiteral("РўРёРї"));
+	form.setHeaderData(2, Qt::Horizontal, QStringLiteral("РќР°РёРјРµРЅРѕРІР°РЅРёРµ"));
+	form.setHeaderData(3, Qt::Horizontal, QStringLiteral("РЎС‚Р°С‚СѓСЃ"));
+	form.setHeaderData(4, Qt::Horizontal, QStringLiteral("РЎС‚РµРїРµРЅСЊ С„РѕСЂРјР°Р»РёР·Р°С†РёРё"));
+	form.setHeaderData(5, Qt::Horizontal, QStringLiteral("РЎС‚СЂСѓРєС‚СѓСЂРЅРѕРµ СЃРІРѕР№СЃС‚РІРѕ"));
 	
 
 	for (int i = 0; i < elements.size(); ++i)
@@ -251,23 +251,23 @@ void CM_spec_widget::generateFormF3()
 		row[2]->setData("text-align: left;", Qt::UserRole + 1);
 
 		QString status;
-		switch (elements[i]->getStatus())                                             //статус ПД
+		switch (elements[i]->getStatus())                                             //СЃС‚Р°С‚СѓСЃ РџР”
 		{
-		case FEStatus::Elementary: status = QStringLiteral("Э"); break;
-		case FEStatus::Intermediate: status = QStringLiteral("П"); break;
-		case FEStatus::Quazielementary: status = QStringLiteral("КЭ"); break;
+		case FEStatus::Elementary: status = QStringLiteral("Р­"); break;
+		case FEStatus::Intermediate: status = QStringLiteral("Рџ"); break;
+		case FEStatus::Quazielementary: status = QStringLiteral("РљР­"); break;
 		default:
 			status = "hz =)";
 			break;
 		}
 		QString _form;
-		switch (elements[i]->getFormalization())                                //степень формализации
+		switch (elements[i]->getFormalization())                                //СЃС‚РµРїРµРЅСЊ С„РѕСЂРјР°Р»РёР·Р°С†РёРё
 		{
-		case FEFormalization::Algorithmic: _form = QStringLiteral("Ал."); break;
-		case FEFormalization::Analytical: _form = QStringLiteral("Ан."); break;
-		case FEFormalization::Empirical: _form = QStringLiteral("Э"); break;
-		case FEFormalization::Information: _form = QStringLiteral("И"); break;
-		case FEFormalization::Statistical: _form = QStringLiteral("С"); break;
+		case FEFormalization::Algorithmic: _form = QStringLiteral("РђР»."); break;
+		case FEFormalization::Analytical: _form = QStringLiteral("РђРЅ."); break;
+		case FEFormalization::Empirical: _form = QStringLiteral("Р­"); break;
+		case FEFormalization::Information: _form = QStringLiteral("Р"); break;
+		case FEFormalization::Statistical: _form = QStringLiteral("РЎ"); break;
 
 		default:
 			_form = "hz =)";
@@ -297,12 +297,12 @@ void CM_spec_widget::generateFormF4()
 		
 	QStandardItemModel form;
 	form.setColumnCount(6);
-	form.setHeaderData(0, Qt::Horizontal, QStringLiteral("Код ПЗ-1"));
-	form.setHeaderData(1, Qt::Horizontal, QStringLiteral("Код ПЗ-2"));
-	form.setHeaderData(2, Qt::Horizontal, QStringLiteral("Код ПЗ-3"));
-	form.setHeaderData(3, Qt::Horizontal, QStringLiteral("Оценка"));
-	form.setHeaderData(4, Qt::Horizontal, QStringLiteral("Вид"));
-	form.setHeaderData(5, Qt::Horizontal, QStringLiteral("Код"));
+	form.setHeaderData(0, Qt::Horizontal, QStringLiteral("РљРѕРґ РџР—-1"));
+	form.setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ РџР—-2"));
+	form.setHeaderData(2, Qt::Horizontal, QStringLiteral("РљРѕРґ РџР—-3"));
+	form.setHeaderData(3, Qt::Horizontal, QStringLiteral("РћС†РµРЅРєР°"));
+	form.setHeaderData(4, Qt::Horizontal, QStringLiteral("Р’РёРґ"));
+	form.setHeaderData(5, Qt::Horizontal, QStringLiteral("РљРѕРґ"));
 
 
 	for (int i = 0; i < links.size(); ++i)
@@ -337,13 +337,13 @@ void CM_spec_widget::generateFormF4()
 			if (l->getAFE1()->getType() == FEType::Sequanse && code3 == "-")
 				continue;
 
-			linkType = QStringLiteral("К");
+			linkType = QStringLiteral("Рљ");
 			QString type;
-			switch (l->getAFE1()->getType())            //в зависимости от типа ПД1  пишем последний столбик в форме А 
+			switch (l->getAFE1()->getType())            //РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ С‚РёРїР° РџР”1  РїРёС€РµРј РїРѕСЃР»РµРґРЅРёР№ СЃС‚РѕР»Р±РёРє РІ С„РѕСЂРјРµ Рђ 
 			{
-			case FEType::Sequanse: type = QStringLiteral("Последовательность"); break;
-			case FEType::Iteration: type = QStringLiteral("Цикл"); break;
-			case FEType::Alternate: type = QStringLiteral("Альтернатива"); break;
+			case FEType::Sequanse: type = QStringLiteral("РџРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚СЊ"); break;
+			case FEType::Iteration: type = QStringLiteral("Р¦РёРєР»"); break;
+			case FEType::Alternate: type = QStringLiteral("РђР»СЊС‚РµСЂРЅР°С‚РёРІР°"); break;
 			default:
 				type = "hz =)";
 				break;
@@ -381,13 +381,13 @@ void CM_spec_widget::generateFormF6()
 
 	QStandardItemModel form;
 	form.setColumnCount(7);
-	form.setHeaderData(0, Qt::Horizontal, QStringLiteral("Код ПЗ-1"));
-	form.setHeaderData(1, Qt::Horizontal, QStringLiteral("Структ. св-во ПЗ-1"));
-	form.setHeaderData(2, Qt::Horizontal, QStringLiteral("Код ПК"));
-	form.setHeaderData(3, Qt::Horizontal, QStringLiteral("Роль ПК"));
-	form.setHeaderData(4, Qt::Horizontal, QStringLiteral("Структ. св-во ПК"));
-	form.setHeaderData(5, Qt::Horizontal, QStringLiteral("Объем. св-во ПК"));
-	form.setHeaderData(6, Qt::Horizontal, QStringLiteral("Особ. роль ПК"));
+	form.setHeaderData(0, Qt::Horizontal, QStringLiteral("РљРѕРґ РџР—-1"));
+	form.setHeaderData(1, Qt::Horizontal, QStringLiteral("РЎС‚СЂСѓРєС‚. СЃРІ-РІРѕ РџР—-1"));
+	form.setHeaderData(2, Qt::Horizontal, QStringLiteral("РљРѕРґ РџРљ"));
+	form.setHeaderData(3, Qt::Horizontal, QStringLiteral("Р РѕР»СЊ РџРљ"));
+	form.setHeaderData(4, Qt::Horizontal, QStringLiteral("РЎС‚СЂСѓРєС‚. СЃРІ-РІРѕ РџРљ"));
+	form.setHeaderData(5, Qt::Horizontal, QStringLiteral("РћР±СЉРµРј. СЃРІ-РІРѕ РџРљ"));
+	form.setHeaderData(6, Qt::Horizontal, QStringLiteral("РћСЃРѕР±. СЂРѕР»СЊ РџРљ"));
 
 	for (int i = 0; i < elements.size(); ++i)
 	{
@@ -403,27 +403,27 @@ void CM_spec_widget::generateFormF6()
 			QString pkCode;
 			if (c == '[' || c == ']')
 			{
-				strPropPK = QStringLiteral("ФП");
+				strPropPK = QStringLiteral("Р¤Рџ");
 			}
 			if (c == '{' || c == '}')
 			{
-				strPropPK = QStringLiteral("ФЦ");
+				strPropPK = QStringLiteral("Р¤Р¦");
 			}
 			if (c == '$')
 			{
-				strPropPK = QStringLiteral("ФИ");
+				strPropPK = QStringLiteral("Р¤Р");
 			}
 			if (c == '/' || c == '?')
 			{
-				strPropPK = QStringLiteral("АА");
+				strPropPK = QStringLiteral("РђРђ");
 			}
 			if (c == '!')
 			{
-				strPropPK = QStringLiteral("СЦ");
+				strPropPK = QStringLiteral("РЎР¦");
 			}
 			if (c == '#')
 			{
-				strPropPK = QStringLiteral("ФА");
+				strPropPK = QStringLiteral("Р¤Рђ");
 			}
 
 
@@ -437,7 +437,7 @@ void CM_spec_widget::generateFormF6()
 					pkCode = QString::fromStdWString(e->getCode().data());
 					if (elements[i]->getType() == None)
 					{
-						f = QStringLiteral("Ф");
+						f = QStringLiteral("Р¤");
 						functionFound = true;
 					}
 				}
@@ -500,7 +500,7 @@ void CM_spec_widget::generateFormF6()
 				row[0] = new QStandardItem(pzCode);
 				row[1] = new QStandardItem();
 				row[2] = new QStandardItem(QString::fromStdWString(e->getCode().data()));
-				row[3] = new QStandardItem(QStringLiteral("Ф"));
+				row[3] = new QStandardItem(QStringLiteral("Р¤"));
 				row[4] = new QStandardItem();
 				row[5] = new QStandardItem();
 				row[6] = new QStandardItem();
@@ -518,7 +518,7 @@ void CM_spec_widget::generateFormF6()
 				row[0] = new QStandardItem(pzCode);
 				row[1] = new QStandardItem();
 				row[2] = new QStandardItem(QString::fromStdWString(e->getCode().data()));
-				row[3] = new QStandardItem(QStringLiteral("А"));
+				row[3] = new QStandardItem(QStringLiteral("Рђ"));
 				row[4] = new QStandardItem();row[5] = new QStandardItem();row[6] = new QStandardItem();
 				form.appendRow(QList<QStandardItem*>({ row[0],row[1],row[2],row[3],row[4],row[5],row[6] }));
 			}
@@ -534,7 +534,7 @@ void CM_spec_widget::generateFormF6()
 				row[0] = new QStandardItem(pzCode);
 				row[1] = new QStandardItem();
 				row[2] = new QStandardItem(QString::fromStdWString(e->getCode().data()));
-				row[3] = new QStandardItem(QStringLiteral("А-у"));
+				row[3] = new QStandardItem(QStringLiteral("Рђ-Сѓ"));
 				row[4] = new QStandardItem(); row[5] = new QStandardItem(); row[6] = new QStandardItem();
 				form.appendRow(QList<QStandardItem*>({ row[0],row[1],row[2],row[3],row[4],row[5],row[6] }));
 			}
@@ -549,7 +549,7 @@ void CM_spec_widget::generateFormF6()
 				row[0] = new QStandardItem(pzCode);
 				row[1] = new QStandardItem();
 				row[2] = new QStandardItem(QString::fromStdWString(e->getCode().data()));
-				row[3] = new QStandardItem(QStringLiteral("А-у"));
+				row[3] = new QStandardItem(QStringLiteral("Рђ-Сѓ"));
 				row[4] = new QStandardItem(); row[5] = new QStandardItem(); row[6] = new QStandardItem();
 				form.appendRow(QList<QStandardItem*>({ row[0],row[1],row[2],row[3],row[4],row[5],row[6] }));
 			}
