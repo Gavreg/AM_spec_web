@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AM_spec_web", "AM_spec_web\AM_spec_web.vcxproj", "{B12702AD-ABFB-343A-A199-8E24837244A3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PM_spec_web", "PM_spec_web\PM_spec_web.vcxproj", "{1B616F4B-5D4A-4060-AA9F-51C117859478}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B12702AD-ABFB-343A-A199-8E24837244A3} = {B12702AD-ABFB-343A-A199-8E24837244A3}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CM_spec_web", "CM_spec_web\CM_spec_web.vcxproj", "{E7AE41BE-BC47-4952-8EF2-CD8D087D8BFA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B12702AD-ABFB-343A-A199-8E24837244A3} = {B12702AD-ABFB-343A-A199-8E24837244A3}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Debug|x86.ActiveCfg = Debug|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Debug|x86.Build.0 = Debug|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x86.ActiveCfg = Release|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x86.Build.0 = Release|Win32
+		{1B616F4B-5D4A-4060-AA9F-51C117859478}.Debug|x86.ActiveCfg = Debug|Win32
+		{1B616F4B-5D4A-4060-AA9F-51C117859478}.Debug|x86.Build.0 = Debug|Win32
+		{1B616F4B-5D4A-4060-AA9F-51C117859478}.Release|x86.ActiveCfg = Release|Win32
+		{1B616F4B-5D4A-4060-AA9F-51C117859478}.Release|x86.Build.0 = Release|Win32
+		{E7AE41BE-BC47-4952-8EF2-CD8D087D8BFA}.Debug|x86.ActiveCfg = Debug|Win32
+		{E7AE41BE-BC47-4952-8EF2-CD8D087D8BFA}.Debug|x86.Build.0 = Debug|Win32
+		{E7AE41BE-BC47-4952-8EF2-CD8D087D8BFA}.Release|x86.ActiveCfg = Release|Win32
+		{E7AE41BE-BC47-4952-8EF2-CD8D087D8BFA}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://gavr1213.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = PM_spec_web\\PM_spec_web.vcxproj
+		SccProjectName1 = PM_spec_web
+		SccLocalPath1 = PM_spec_web
+		SccProjectUniqueName2 = AM_spec_web\\AM_spec_web.vcxproj
+		SccProjectName2 = AM_spec_web
+		SccLocalPath2 = AM_spec_web
+		SccProjectUniqueName3 = CM_spec_web\\CM_spec_web.vcxproj
+		SccProjectName3 = CM_spec_web
+		SccLocalPath3 = CM_spec_web
+	EndGlobalSection
+EndGlobal
