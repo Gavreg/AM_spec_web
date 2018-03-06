@@ -1,6 +1,9 @@
 # Prerequisites
 *.d
 .vs/
+*/Debug/*
+*/Release/*
+*/GeneratedFiles/*
 *.db
 *.opendb
 # Compiled Object files

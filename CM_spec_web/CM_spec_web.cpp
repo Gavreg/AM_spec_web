@@ -10,6 +10,8 @@ extern "C" __declspec(dllexport) IsModule * loadModule()
 AFsettings *formF3settings;
 CM_spec_widget::CM_spec_widget(QWidget * parent):Am_spec_widget(parent)
 {
+	//Создаем базовый интерфейс:
+	//Добавляем пустые вкладки сдля спецификаций на окно
 	widgetName = QStringLiteral("Спецификации");
 
 	formF1 = addTab(QStringLiteral("Форма F1"));
@@ -43,17 +45,21 @@ void CM_spec_widget::IS_WidgetActived()
 
 void CM_spec_widget::generateFormF1()
 {
+	//Получаем указатель на концептуальную модель проекта
 	ConceptModel *cm = (ConceptModel *)IS::getConceptModel();
 	
 	vector<SubjectCategory *> elements;
 
+	//переписываем все ПК из модели в вектор
 	for (int i = 0; i < cm->getConceptStructure()->elementsCount(); ++i)
 	{
 		elements.push_back((SubjectCategory *)cm->getConceptStructure()->getAIElement(i));
 	}
 
+	//сортируем вектор ПК по возрастанию кода, условие сортировки описано в ф-ции SubjectCategory::SCcompare
 	sort(elements.begin(), elements.end(), &SubjectCategory::SCcompare);
 
+	//Создаем 	QStandardItemModel для будущей спецификации
 	QStandardItemModel form;
 	form.setColumnCount(6);
 	form.setHeaderData(0, Qt::Horizontal, QStringLiteral("Класс"));
@@ -63,11 +69,18 @@ void CM_spec_widget::generateFormF1()
 	form.setHeaderData(4, Qt::Horizontal, QStringLiteral("Статус"));
 	form.setHeaderData(5, Qt::Horizontal, QStringLiteral("Оценка"));
 	
+	//Проходя вектор с ПК формируем всю спецификацию
 	for (auto i = elements.begin(); i < elements.end(); ++i)
 	{
+		//формируем строку спецификации
+		//Берем текущую ПК
 		SubjectCategory *sc = (*i);
+
+		//Создаем массив для ячеек строки
 		QStandardItem *row[6];
 
+		//далее заполняем каждую ячейку строки, извлекая данные из ПК
+		//и переводя их на русский язык
 		QString type, status;
 		switch (sc->getType())
 		{
@@ -80,6 +93,7 @@ void CM_spec_widget::generateFormF1()
 		case CategoryStatus::CS_NP: status = "NP"; break;
 		}
 
+		//заносим данные в ячейки строки
 		row[0] = new QStandardItem(QString(sc->getClassChar()));
 		row[1] = new QStandardItem(QString::fromStdWString(sc->getCode().data()));
 		row[2] = new QStandardItem(QString::fromStdWString(sc->getName().data()));
@@ -90,6 +104,8 @@ void CM_spec_widget::generateFormF1()
 		form.appendRow(QList<QStandardItem*>({ row[0],row[1],row[2], row[3], row[4] }));
 		
 	}
+
+	//записываем полученную спецификацию на вкладку.
 	fillForm(formF1, form);
 }
 

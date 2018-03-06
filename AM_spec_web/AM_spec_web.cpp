@@ -1,4 +1,4 @@
-#include "AM_spec_web.h"
+﻿#include "AM_spec_web.h"
 
 #include <QtWebEngineWidgets/QWebEngineView>
 #include <QFile>
@@ -13,25 +13,10 @@ Am_spec_widget::Am_spec_widget(QWidget * parent):WorkWidget(parent)
 	ui.setupUi(this);
 }
 
-void Am_spec_widget::addTab(QString & name, QStandardItemModel & model)
-{
-	QWebEngineView *web = new QWebEngineView(this);
-	web->setZoomFactor(ui.sbZoom->value() / 100.0);
-	ui.tabWidget->addTab(web, name);
-	QString table = modelToHtml(model);
-
-	QFile f(QApplication::applicationDirPath() + "\\pm_template\\formA.html");
-	f.open(QIODevice::ReadOnly);
-	QTextStream s(&f);
-	QString str = s.readAll();
-	QString templ = str;
-	f.close();
-
-	web->setHtml(str.replace("%formA%", table));
 
 
-}
 
+//добавление пустой вкладки-спецификации с нужным именем  на коно виджета
 FormAndPanel * Am_spec_widget::addTab(QString & name)
 {
 	FormAndPanel * r = new FormAndPanel();
@@ -39,29 +24,36 @@ FormAndPanel * Am_spec_widget::addTab(QString & name)
 	return r;
 }
 
-void Am_spec_widget::fillForm(FormAndPanel *form, QStandardItemModel &table)
-{
-	QWebEngineView *web = form->ui.webEngineView;
-	web->setZoomFactor(ui.sbZoom->value() / 100.0);
-	
-	
-	QFile f(QApplication::applicationDirPath() + "\\pm_template\\formA.html");
-	f.open(QIODevice::ReadOnly);
-	QTextStream s(&f);
-	QString str = s.readAll();
-	
-	f.close();
 
-	web->setHtml(str.replace("%formA%", modelToHtml(table)));
-}
 
+
+//добавление пустого пространства между вкладками спецификаций (чтобы было красиво)
 void Am_spec_widget::addSpace()
 {
 	QWidget *w = new QWidget();
 	
+	
 	ui.tabWidget->setTabEnabled(ui.tabWidget->addTab(w, ""), false);
 }
 
+void Am_spec_widget::fillForm(FormAndPanel *form, QStandardItemModel &table)
+
+{	 
+	QWebEngineView *web = form->ui.webEngineView;
+	web->setZoomFactor(ui.sbZoom->value() / 100.0);	
+
+
+	QFile f(QApplication::applicationDirPath() + "\\pm_template\\formA.html");	 
+	f.open(QIODevice::ReadOnly);	
+	QTextStream s(&f);	  
+	QString str = s.readAll();	 
+	f.close();	   
+
+	web->setHtml(str.replace("%formA%", modelToHtml(table)));
+
+}
+
+//меняем значение масштаба во всех вкладках в зависимости от значения i
 void Am_spec_widget::on_sbZoom_valueChanged(int i)
 {
 	//QApplication::beep();
@@ -71,7 +63,7 @@ void Am_spec_widget::on_sbZoom_valueChanged(int i)
 	}
 }
 
-
+ //преобразование  QStandardItemModel в HTML таблицу <table> ... </table>
 QString modelToHtml(QStandardItemModel & model)
 {
 	QString table="<table>";
